@@ -12,8 +12,28 @@ for i in inputs:
     order, val = i.split(' ')
     values.append([int(order), val])
     
-positions = [[]]*n    
-for i, value in enumerate(values):
-    positions[value[0]].append(i)
+n = int(input())
+inputs = [input() for i in range(n)]
+values = []
+
+for i in inputs:
+    order, val = i.split(' ')
+    values.append([int(order), val])
     
-print(positions)    
+def print_in_order(inputs):
+	store = [[] for x in range(len(inputs))]
+	for i, value in enumerate(inputs):
+		store[value[0]].append(i)
+	mid = len(inputs)//2
+
+	result = []
+	for order in store:
+		for position in order:
+			if position < mid:
+				result.append('-')
+			else:
+				result.append(inputs[position][1])	
+
+	print(' '.join(result))
+
+print_in_order(values)
